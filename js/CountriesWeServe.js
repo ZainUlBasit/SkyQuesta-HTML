@@ -1,10 +1,10 @@
 // CountriesWeServe.js – renders countries into #countriesContainer when DOM is ready
 
 const countries = [
-  { name: "Australia", image: "img/country-1.jpg", flag: "img/austrailia.png", delay: "0.1s" },
-  { name: "Canada", image: "img/country-2.jpg", flag: "img/canada.png", delay: "0.3s" },
-  { name: "New York, USA", image: "img/country-3.jpg", flag: "img/us.png", delay: "0.5s" },
-  { name: "United Kingdom, UK", image: "img/country-4.jpg", flag: "img/uk.png", delay: "0.7s" },
+  { name: "Australia", image: "img/austrailia-country.jpg", flag: "img/austrailia.png", delay: "0.1s" },
+  { name: "Canada", image: "img/cannada-country.jpg", flag: "img/canada.png", delay: "0.3s" },
+  { name: "United States", image: "img/unitedstates-country.jpg", flag: "img/us.png", delay: "0.5s" },
+  { name: "United Kingdom", image: "img/unitedkingdom-country.jpg", flag: "img/uk.png", delay: "0.7s" },
 ];
 
 function renderCountries() {

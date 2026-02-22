@@ -1,4 +1,4 @@
-// faq.js – injects FAQs into #faqContainer and handles accordion toggle
+// faq.js – injects FAQs into #faqContainer (index) or #auFaqContainer (Australia page)
 
 var faqs = [
   {
@@ -38,6 +38,52 @@ var faqs = [
   },
 ];
 
+// Australia page – Australia immigration FAQ (Bootstrap accordion)
+var auFaqs = [
+  { question: "What does an Australia Immigration Consultant in Qatar actually do?", answer: "An Australia immigration consultant guides you through the full visa process. They check your profile, prepare documents, and submit your application correctly. This reduces mistakes and improves approval chances." },
+  { question: "How do I know if I am eligible for Australia immigration from Qatar?", answer: "It is easier than you think, as eligibility depends on age, education, work experience, and English level. Your job must match Australia's skilled occupation list. A consultant can check your points and tell you your chances clearly." },
+  { question: "How long does the Australia PR process usually take?", answer: "Processing time depends on visa type and profile strength. Skilled visas often take several months after invitation. Proper documents play an important role to avoid delay." },
+  { question: "Can a consultant really increase my visa success rate?", answer: "Yes, correct guidance reduces errors and strengthens your case. Consultants understand immigration rules and documentation standards. A strong and complete file improves approval chances." },
+  { question: "What is the minimum IELTS score required for Australian immigration?", answer: "Most skilled visas require at least 6 bands in each module. Higher scores increase your immigration points and ranking. Better English can speed up your invitation chances." },
+  { question: "My visa was refused before. Can I apply again? (Troubleshooting)", answer: "Yes, you can reapply after fixing the refusal reason. Many refusals happen due to weak documents or incorrect filing. A professional review helps avoid repeating mistakes." },
+  { question: "Which visa is best for skilled workers from Qatar?", answer: "Skilled migration visas are the most popular choice these days all over the world. They offer long-term work rights and PR pathways. The right visa depends on your occupation and points score." },
+  { question: "Do consultants also help after visa approval?", answer: "Good consultants support you even after a visa grant. They guide you about travel, settlement, and initial steps in Australia. This makes your transition smoother and stress free." },
+  { question: "Is Australia a good choice for long-term settlement?", answer: "It is clear that Australia offers a strong economy, safe cities, and good job opportunities all the time. Permanent residents living there get healthcare, education, and social benefits always. Many families move for a stable and secure future." },
+];
+
+// US Visa page – US immigration FAQ (Bootstrap accordion)
+var usFaqs = [
+  { question: "Why should I hire a US visa immigration consultant in Qatar?", answer: "These consultants know all the visa rules inside and out. They help you put together paperwork and stop you from making mistakes everyone makes. Better approval odds and you don't waste months figuring stuff out yourself." },
+  { question: "How long does the US visa process take from Qatar?", answer: "It's different for everyone. What visa you want and your case details matter. Sometimes just weeks, other times you're waiting months. Having someone guide you keeps things moving without getting stuck." },
+  { question: "What documents are required for a US visa application?", answer: "You need a passport, photos, and the forms. Depending on your case, they want bank statements, diplomas, employment letters too. A consultant checks so you're not missing anything important." },
+  { question: "Can I apply for a US visa without a consultant?", answer: "Sure, if you know what you're doing. But tons of people get rejected over tiny errors they didn't notice. Getting help means fewer headaches and less chance of messing up." },
+  { question: "What should I do if my US visa gets rejected?", answer: "Don't panic. Understand exactly why you got denied. Fix that issue and build a better case before applying again. A consultant can really turn things around at this point." },
+  { question: "Which is the easiest way to migrate to the USA from Qatar?", answer: "There's no simple answer here. Your background, skills, and goals matter. Most people look at work visas, student visas, business visas, or family connections. A consultant figures out what fits your situation." },
+  { question: "How can I increase my chances of US visa approval?", answer: "Be honest and thorough with paperwork - no shortcuts. Practice for the interview and follow their requirements. Having an expert review everything makes your whole case look way more solid." },
+];
+
+// Canada page – Canada immigration FAQ (Bootstrap accordion)
+var caFaqs = [
+  { question: "Can I apply for immigration while living in Qatar?", answer: "Yes, you can do everything from here; there is no need to travel. You mostly submit your application online. Many people do it while still working and living their normal life." },
+  { question: "Who actually reviews and approves immigration applications?", answer: "The authority that decides is IRCC (Immigration, Refugees and Citizenship Canada). They review your documents and check if everything is in order. Your consultant helps you put it all together but they cannot make the decision for you." },
+  { question: "How important is the English test for immigration?", answer: "It is very important—more than most people think. Most programs consider your English level seriously. Doing well on IELTS can significantly improve your chances." },
+  { question: "Can my family move with me if I get approved?", answer: "Yes, in most cases your spouse and children can come with you. They are usually included in the same application. It depends on which program you apply under, so it is worth checking." },
+  { question: "How long does the immigration process usually take?", answer: "It really depends; there is no single answer. Some people get through quickly and others wait longer. Having complete documents ready from the start usually helps move things along." },
+  { question: "Can I meet a consultant in person if I live near Doha?", answer: "Yes, if you are close to Doha you can meet them face to face. Many people find it easier to sit down and discuss everything. You can also ask questions and get answers on the spot." },
+  { question: "What should I do after my visa gets approved?", answer: "First, gather all your important papers and start planning. Most people try to arrange accommodation before flying out. The more you sort out early, the easier it is when you land." },
+];
+
+// UK Visa page – UK immigration FAQ (Bootstrap accordion)
+var ukFaqs = [
+  { question: "How much does hiring a UK immigration consultant in Qatar actually cost?", answer: "Prices really depend on which consultant you pick and what visa you need help with. Some charge flat fees while others bill by the hour or per service. The best thing to do is ask a few consultants for quotes and compare what you're getting for your money." },
+  { question: "Can a consultant guarantee my UK visa will get approved?", answer: "No—nobody can promise you'll definitely get approved. What they can do is make your application way stronger and catch mistakes that would get you rejected. The final decision always comes from UK immigration officials, not your consultant." },
+  { question: "What's the difference between a certified consultant and just getting advice from a friend?", answer: "Certified consultants have actual training and know current visa laws inside out. Your friend might mean well but outdated info or wrong advice can mess up your whole application. Plus consultants are accountable if they make an error; friends aren't." },
+  { question: "Do I need to visit the consultant's office or can everything be done online?", answer: "Most consultants in Qatar offer both options. You can meet in person if you want that face-to-face connection, or handle everything through email and video calls. It's whatever works better for your schedule and comfort level." },
+  { question: "What happens if my consultant makes a mistake on my application?", answer: "Good consultants have insurance for this. If their error causes your rejection, they should fix it at no extra cost or help you reapply properly. That's why picking someone certified and reputable really matters—they take responsibility." },
+  { question: "Will the consultant handle my visa interview preparation too?", answer: "Most good consultants include interview prep as part of their service. They'll do mock interviews with you, tell you what questions to expect, and coach you on giving strong answers. Some charge extra for this, so ask upfront what's included." },
+  { question: "Are online UK immigration consultants as good as local ones in Qatar?", answer: "It really depends on the specific consultant, not where they're located. Some online consultants are excellent and know UK visa law perfectly. But local Qatar consultants might understand regional issues better and be easier to meet with if problems come up." },
+];
+
 function renderFAQs() {
   var container = document.getElementById("faqContainer");
   if (!container) return;
@@ -63,6 +109,171 @@ function renderFAQs() {
     .join("");
 
   initFAQToggle();
+}
+
+function renderAuFAQs() {
+  var container = document.getElementById("auFaqContainer");
+  if (!container) return;
+
+  var accordionId = "auFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    auFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "auFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
+function renderUsFAQs() {
+  var container = document.getElementById("usFaqContainer");
+  if (!container) return;
+  var accordionId = "usFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    usFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "usFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
+function renderCaFAQs() {
+  var container = document.getElementById("caFaqContainer");
+  if (!container) return;
+  var accordionId = "caFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    caFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "caFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
+function renderUkFAQs() {
+  var container = document.getElementById("ukFaqContainer");
+  if (!container) return;
+  var accordionId = "ukFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    ukFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "ukFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
 }
 
 function initFAQToggle() {
@@ -104,8 +315,16 @@ function initFAQToggle() {
   });
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", renderFAQs);
-} else {
+function initFaqs() {
   renderFAQs();
+  renderAuFAQs();
+  renderUsFAQs();
+  renderCaFAQs();
+  renderUkFAQs();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initFaqs);
+} else {
+  initFaqs();
 }

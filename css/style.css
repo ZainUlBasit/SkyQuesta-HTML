@@ -1,3 +1,10 @@
+/* Prevent horizontal scroll from dropdown/nav overflow */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /*** Spinner Start ***/
 /*** Spinner ***/
 #spinner {
@@ -244,6 +251,17 @@
     transition: 0.5s;
     opacity: 0;
   }
+}
+
+/* Keep dropdown within viewport to avoid horizontal scroll */
+.navbar .dropdown-menu {
+  max-width: min(calc(100vw - 2rem));
+  left: auto;
+  right: 0;
+}
+.navbar .dropdown-menu .dropdown-item {
+  white-space: no-wrap;
+  word-wrap: break-word;
 }
 
 .dropdown .dropdown-menu a:hover {
