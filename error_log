@@ -1,0 +1,3 @@
+[04-Dec-2025 15:08:23 UTC] PHP Warning:  Undefined variable $subject1 in /home/skyquesta/public_html/enquiry_mail.php on line 98
+[04-Dec-2025 15:08:23 UTC] PHP Warning:  Undefined variable $message1 in /home/skyquesta/public_html/enquiry_mail.php on line 98
+[04-Dec-2025 15:08:23 UTC] PHP Warning:  Undefined variable $headers1 in /home/skyquesta/public_html/enquiry_mail.php on line 98
