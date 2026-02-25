@@ -84,6 +84,26 @@ var ukFaqs = [
   { question: "Are online UK immigration consultants as good as local ones in Qatar?", answer: "It really depends on the specific consultant, not where they're located. Some online consultants are excellent and know UK visa law perfectly. But local Qatar consultants might understand regional issues better and be easier to meet with if problems come up." },
 ];
 
+// Dubai Visa page – Dubai visa FAQ (Bootstrap accordion)
+var dubaiFaqs = [
+  { question: "How long does a Dubai visa take from Qatar?", answer: "Standard approval usually takes 24–48 hours. Express services reduce waiting time. Exact duration depends on document accuracy." },
+  { question: "Can Qatar residents apply for a Dubai visa online?", answer: "Yes. We offer full Dubai visa online application support. It is a 100% online Dubai visa process." },
+  { question: "Is travel insurance required?", answer: "It is not always mandatory. However, it is strongly recommended for safe travel." },
+  { question: "Can I extend my Dubai tourist visa?", answer: "Yes, extension options may be available depending on visa type. We guide you about eligibility." },
+  { question: "What happens if my visa is rejected?", answer: "We explain the reason clearly. Then we guide correction steps. Our goal is to ensure fast Dubai visa approval next time." },
+];
+
+// Schengen Visa page – Schengen visa FAQ (Bootstrap accordion)
+var schengenFaqs = [
+  { question: "Do I really need travel insurance for my trip?", answer: "Yes, it's not optional for most applications. It helps cover medical care or sudden problems while you travel. Think of it as a safety net for your journey." },
+  { question: "What happens during the biometric appointment?", answer: "They take your fingerprints and a photo. The process is simple and doesn't take long. Just follow instructions and stay relaxed." },
+  { question: "Can I visit more than one country with one visa?", answer: "Yes, that's one of the main benefits. You can move between several countries in the Schengen area. Just make sure you apply through the right country first." },
+  { question: "What if my visa gets rejected?", answer: "It happens sometimes, so don't panic. You'll get a letter explaining what went wrong. Fix the issue and you can try again." },
+  { question: "Do children need their own visa applications?", answer: "Yes, every traveler needs a separate application. Parents handle the process for younger children. Extra papers, like birth records, may be requested." },
+  { question: "Where do I attend my visa appointment?", answer: "Appointments are held at visa centers or embassies. Many residents go to offices in Doha. Bring all documents and arrive on time to avoid problems." },
+  { question: "How will I know if my visa is approved?", answer: "You'll be told when your passport is ready to collect. The visa will be placed inside your passport if approved. Always check the dates before you travel." },
+];
+
 function renderFAQs() {
   var container = document.getElementById("faqContainer");
   if (!container) return;
@@ -276,6 +296,88 @@ function renderUkFAQs() {
     "</div>";
 }
 
+function renderDubaiFAQs() {
+  var container = document.getElementById("dubaiFaqContainer");
+  if (!container) return;
+  var accordionId = "dubaiFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    dubaiFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "dubaiFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
+function renderSchengenFAQs() {
+  var container = document.getElementById("schengenFaqContainer");
+  if (!container) return;
+  var accordionId = "schengenFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    schengenFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "schengenFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h2 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h2>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
 function initFAQToggle() {
   var items = document.querySelectorAll(".faq-item");
   items.forEach(function (item) {
@@ -321,6 +423,8 @@ function initFaqs() {
   renderUsFAQs();
   renderCaFAQs();
   renderUkFAQs();
+  renderDubaiFAQs();
+  renderSchengenFAQs();
 }
 
 if (document.readyState === "loading") {

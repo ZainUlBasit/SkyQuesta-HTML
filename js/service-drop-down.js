@@ -9,10 +9,12 @@
   var DROPDOWN_ID = "serviceDropdown";
 
   var servicesDropdown = [
-    { name: "Best Australia Immigration Consultant in Qatar", link: "best-australia-immigration-consultant-in-qatar.html" },
-    { name: "US Visa Immigration Consultant in Qatar", link: "us-visa-immigration-consultant-in-qatar.html" },
-    { name: "Best Canada Immigration Consultants in Qatar", link: "best-canada-immigration-consultants-in-qatar.html" },
-    { name: "Best UK Immigration Consultant in Qatar", link: "best-uk-immigration-consultant-in-qatar.html" },
+    { name: "Australia Immigration", link: "best-australia-immigration-consultant-in-qatar.html" },
+    { name: "US Visa", link: "us-visa-immigration-consultant-in-qatar.html" },
+    { name: "Dubai Visa", link: "dubai-visa-from-qatar.html" },
+    { name: "Schengen Visa", link: "schengen-visa-from-qatar.html" },
+    { name: "Canada Immigration", link: "best-canada-immigration-consultants-in-qatar.html" },
+    { name: "UK Immigration", link: "best-uk-immigration-consultant-in-qatar.html" },
   ];
 
   /**

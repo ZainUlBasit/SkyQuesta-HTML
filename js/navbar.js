@@ -20,6 +20,8 @@ var navbarData = {
       "best-australia-immigration-consultant-in-qatar.html",
       "best-canada-immigration-consultants-in-qatar.html",
       "us-visa-immigration-consultant-in-qatar.html",
+      "dubai-visa-from-qatar.html",
+      "schengen-visa-from-qatar.html",
       "ticketbooking.html",
       "visitorassistance.html",
       "travelarrangements.html",
@@ -118,7 +120,8 @@ function setActiveNav() {
   if (page === "" || path === "/" || path.endsWith("/")) page = "index.html";
 
   var links = document.querySelectorAll(".navbar-nav .nav-link[data-nav]");
-  var isServicePage = navbarData.nav.servicePages && navbarData.nav.servicePages.indexOf(page) !== -1;
+  var isServicePage =
+    navbarData.nav.servicePages && navbarData.nav.servicePages.indexOf(page) !== -1;
 
   for (var i = 0; i < links.length; i++) {
     var a = links[i];
