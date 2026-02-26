@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Env and secrets
+.env
+.env.*
+*.pem
+
+# IDE / Editor
+.idea/
+.vscode/
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Optional: keep repo smaller (uncomment if you don’t want these in git)
+# lib/
+# img/

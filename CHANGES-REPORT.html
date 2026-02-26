@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Changes Report – Sky Quest</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; color: #222; line-height: 1.5; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-top: 0; }
+    h2 { font-size: 1.15rem; margin-top: 24px; color: #333; }
+    p { margin: 8px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+    th, td { border: 1px solid #ccc; padding: 8px 10px; text-align: left; }
+    th { background: #f0f0f0; font-weight: 600; }
+    tr:nth-child(even) { background: #fafafa; }
+    .note { background: #f5f5f5; padding: 12px; border-radius: 6px; margin: 16px 0; border-left: 4px solid #666; }
+    ul { margin: 8px 0; padding-left: 24px; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 20px 0; }
+    .meta { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+    strong { font-weight: 600; }
+    @media print {
+      body { padding: 16px; }
+      h1 { font-size: 1.35rem; }
+      h2 { font-size: 1.1rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 6px 8px; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <p class="meta no-print">To save as PDF: <strong>File → Print → Save as PDF</strong> (or Ctrl/Cmd + P → Destination: Save as PDF)</p>
+  <hr class="no-print" />
+
+  <h1>Changes Report – Sky Quest HTML Pages</h1>
+  <p class="meta"><strong>Report date:</strong> 26 Feb 2025</p>
+  <p class="meta"><strong>Files covered:</strong> index.html, schengen-visa-from-qatar.html, dubai-visa-from-qatar.html, us-visa-immigration-consultant-in-qatar.html, best-uk-immigration-consultant-in-qatar.html, best-canada-immigration-consultants-in-qatar.html, best-australia-immigration-consultant-in-qatar.html</p>
+
+  <div class="note">
+    <strong>Note:</strong> <strong>index.html</strong> is the original site page (where performance fixes were applied). <strong>All other pages</strong> (Schengen, Dubai, US, UK, Canada, Australia, etc.) were newly created — these are the new pages you added.
+  </div>
+
+  <h2>1. index.html – Changes made (Performance fix)</h2>
+  <p>These changes were made <strong>only on index.html</strong> so the page opens faster:</p>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Change</th><th>Detail</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Kaspersky removed</strong></td><td>Removed Kaspersky blocking script and CSS from &lt;head&gt;. It was slowing down page load significantly.</td></tr>
+      <tr><td>2</td><td><strong>Spinner hides earlier</strong></td><td>Added a small inline script right after the spinner that removes the spinner’s show class on DOMContentLoaded. The page no longer waits for all scripts to load before hiding the spinner.</td></tr>
+      <tr><td>3</td><td><strong>Hero image preload</strong></td><td>Added link rel="preload" href="img/carousel-1.jpg" as="image" so the carousel image starts loading earlier.</td></tr>
+      <tr><td>4</td><td><strong>Hero image priority</strong></td><td>Added fetchpriority="high" on the carousel image.</td></tr>
+      <tr><td>5</td><td><strong>Below-the-fold images lazy</strong></td><td>Added loading="lazy" on img/about-2.png and img/about-3.jpg so initial load stays fast.</td></tr>
+      <tr><td>6</td><td><strong>Google Ads (gtag)</strong></td><td>Kept gtag script for conversion tracking, with async loading.</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Result:</strong> index.html should now open faster; the spinner disappears as soon as the DOM is ready.</p>
+
+  <hr />
+
+  <h2>2. Other pages – Current state (newly created pages)</h2>
+  <p>These 6 pages were <strong>newly created by you</strong>; performance fixes (spinner early hide, preload, lazy images) have not been applied to them yet. You can apply the same pattern to these pages too if you want all pages to open faster.</p>
+  <ul>
+    <li>schengen-visa-from-qatar.html</li>
+    <li>dubai-visa-from-qatar.html</li>
+    <li>us-visa-immigration-consultant-in-qatar.html</li>
+    <li>best-uk-immigration-consultant-in-qatar.html</li>
+    <li>best-canada-immigration-consultants-in-qatar.html</li>
+    <li>best-australia-immigration-consultant-in-qatar.html</li>
+  </ul>
+  <table>
+    <thead>
+      <tr><th>Feature</th><th>index.html</th><th>Other 6 pages</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Kaspersky in head</td><td>Removed</td><td>Not present (already clean)</td></tr>
+      <tr><td>Spinner hide on DOMContentLoaded</td><td>Yes – Inline script</td><td>No – spinner stays until all JS has loaded</td></tr>
+      <tr><td>Preload LCP/hero image</td><td>Yes – carousel-1.jpg</td><td>No</td></tr>
+      <tr><td>fetchpriority="high" on hero</td><td>Yes</td><td>No</td></tr>
+      <tr><td>loading="lazy" on about images</td><td>Yes – about-2.png, about-3.jpg</td><td>No</td></tr>
+      <tr><td>GTM / gtag in head</td><td>Yes (index + Australia has GTM)</td><td>UK/Canada/US/Dubai/Schengen: no GTM/gtag in head; Australia: has GTM</td></tr>
+    </tbody>
+  </table>
+  <p>If you want, the same performance fixes (spinner early hide, preload, lazy images) can be applied to these 6 pages so all pages open faster.</p>
+
+  <hr />
+
+  <h2>3. Short summary</h2>
+  <ul>
+    <li><strong>index.html:</strong> Original page — slow-load fix has been applied (Kaspersky removed, spinner early hide, preload + lazy images + gtag).</li>
+    <li><strong>Other pages:</strong> Your newly created pages — the same performance pattern is optional if you want all pages to open faster.</li>
+  </ul>
+  <p>If you want, I can provide the exact code to apply these same changes to the 6 other pages.</p>
+</body>
+</html>

@@ -65,16 +65,25 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
 
-    <script
-      type="text/javascript"
-      src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=zQZ6EDH7RRgMfm6HmptN_xPTOZlVqGqa2TluH77tiFJQ82O7nuf9ciJ407xgqnt128auNNGUhOEDWNy20_tgSP3pHINic6JsikBp4XPDimVLw17nu4D5u14I63P9cqJpTBDcODt3Jh46EK6UycTlmvmHvFV8FMbwB_pA4G1eZr0nlUubZB_WVvJgBnreH2nZ"
-      charset="UTF-8"
-    ></script>
-    <link
-      rel="stylesheet"
-      crossorigin="anonymous"
-      href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9xYXRhcmhvc3RpbmcucWE6MjA4My9jcHNlc3MyODU1NzI5MjY5L2Rvd25sb2FkP3NraXBlbmNvZGU9MSZmaWxlPSUyZmhvbWUlMmZza3lxdWVzdGElMmZwdWJsaWNfaHRtbCUyZmluZGV4Lmh0bWw"
-    />
+    <!-- Preload LCP image for faster first paint -->
+    <link rel="preload" href="img/carousel-1.jpg" as="image" />
+
+    <!-- Google tag (gtag.js) - async for faster page open -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17797285783"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "AW-17797285783");
+    </script>
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () { if (typeof url != "undefined") { window.location = url; } };
+        gtag("event", "conversion", { send_to: "AW-17797285783/bUdpCJnbo9EbEJePtKZC", event_callback: callback });
+        return false;
+      }
+    </script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -108,38 +117,6 @@
       })(window, document, "script", "dataLayer", "GTM-KR4V7764");
     </script>
     <!-- End Google Tag Manager -->
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-17797285783"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "AW-17797285783");
-    </script>
-
-    <!-- Event snippet for Contact conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-    <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof url != "undefined") {
-            window.location = url;
-          }
-        };
-        gtag("event", "conversion", {
-          send_to: "AW-17797285783/bUdpCJnbo9EbEJePtKZC",
-          event_callback: callback,
-        });
-        return false;
-      }
-    </script>
   </head>
 
   <body>
@@ -168,6 +145,9 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       </div>
     </div>
     <!-- Spinner End -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){ var s=document.getElementById('spinner'); if(s) s.classList.remove('show'); });
+    </script>
 
     <!-- Topbar Start -->
     <div id="navbarSection"></div>
@@ -186,7 +166,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <img src="img/carousel-1.jpg" class="img-fluid" alt="Image" />
+            <img src="img/carousel-1.jpg" class="img-fluid" alt="Image" fetchpriority="high" />
             <div class="carousel-caption">
               <div class="text-center p-4" style="max-width: 900px">
                 <h4
@@ -331,6 +311,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                 class="img-fluid w-100"
                 style="margin-bottom: -7px"
                 alt="Image"
+                loading="lazy"
               />
               <img
                 src="img/about-3.jpg"
@@ -340,6 +321,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
                   border-top-left-radius: 300px;
                 "
                 alt="Image"
+                loading="lazy"
               />
             </div>
           </div>
