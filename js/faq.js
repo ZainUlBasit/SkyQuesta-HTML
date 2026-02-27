@@ -1,43 +1,43 @@
 // faq.js – injects FAQs into #faqContainer (index) or #auFaqContainer (Australia page)
 
 var faqs = [
-  {
-    question: "How do I know which visa is right for me?",
-    answer:
-      "The right and suitable visa depends on your purpose of travel, such as study, work, business, or visiting. At SKY QUEST, our consultants will evaluate your profile first, goals, and eligibility to recommend the most suitable option for your situation.",
-  },
-  {
+    {
+      question: "How do I know which visa is right for me?",
+      answer:
+        "The right and suitable visa depends on your purpose of travel, such as study, work, business, or visiting. At SKY QUEST, our consultants will evaluate your profile first, goals, and eligibility to recommend the most suitable option for your situation.",
+    },
+    {
     question: "What documents are usually required for a visa application?",
-    answer:
-      "Document requirements vary by country and visa type, but typically include a valid passport, financial proof, and supporting records.",
-  },
-  {
-    question: "How long does the visa process usually take?",
-    answer:
-      "The processing time differs for each visa category and your destination. Some applications are processed within a few weeks, while others may take longer, depending on verification procedures and embassy timelines.",
-  },
-  {
+      answer:
+        "Document requirements vary by country and visa type, but typically include a valid passport, financial proof, and supporting records.",
+    },
+    {
+      question: "How long does the visa process usually take?",
+      answer:
+        "The processing time differs for each visa category and your destination. Some applications are processed within a few weeks, while others may take longer, depending on verification procedures and embassy timelines.",
+    },
+    {
     question: "Can I apply again if my visa was previously rejected?",
-    answer:
-      "Yes, you can reapply after understanding the reason for rejection. Reviewing the previous application and correcting documentation or eligibility gaps can improve your approval chances.",
-  },
-  {
+      answer:
+        "Yes, you can reapply after understanding the reason for rejection. Reviewing the previous application and correcting documentation or eligibility gaps can improve your approval chances.",
+    },
+    {
     question: "Do I need to visit the office for consultation?",
-    answer:
-      "You can visit our office, and we also offer online consultations. Many applicants begin their immigration process through online or phone consultations for convenience and to benefit from our online visa service.",
-  },
-  {
+      answer:
+        "You can visit our office, and we also offer online consultations. Many applicants begin their immigration process through online or phone consultations for convenience and to benefit from our online visa service.",
+    },
+    {
     question: "Will I receive support after my application is submitted?",
-    answer:
-      "Yes, ongoing support is a priority for us. Applicants are guided through updates, additional document requests, and any follow-up communication until a final decision is received.",
-  },
-  {
+      answer:
+        "Yes, ongoing support is a priority for us. Applicants are guided through updates, additional document requests, and any follow-up communication until a final decision is received.",
+    },
+    {
     question: "How can I get started with the immigration process?",
-    answer:
-      "To start, begin with a consultation to assess your eligibility and understand the requirements. Once your profile is reviewed by our team, you will receive clear guidance on documentation and next steps.",
-  },
-];
-
+      answer:
+        "To start, begin with a consultation to assess your eligibility and understand the requirements. Once your profile is reviewed by our team, you will receive clear guidance on documentation and next steps.",
+    },
+  ];
+  
 // Australia page – Australia immigration FAQ (Bootstrap accordion)
 var auFaqs = [
   { question: "What does an Australia Immigration Consultant in Qatar actually do?", answer: "An Australia immigration consultant guides you through the full visa process. They check your profile, prepare documents, and submit your application correctly. This reduces mistakes and improves approval chances." },
@@ -104,31 +104,100 @@ var schengenFaqs = [
   { question: "How will I know if my visa is approved?", answer: "You'll be told when your passport is ready to collect. The visa will be placed inside your passport if approved. Always check the dates before you travel." },
 ];
 
+// Saudi Visa page – Saudi visa FAQ (Bootstrap accordion)
+var saudiFaqs = [
+  {
+    question: "How can I get a Saudi visa from Qatar?",
+    answer:
+      "Getting a visa doesn\u2019t have to feel like solving a puzzle. First, confirm your Saudi visa requirements for Qatar residents. Then gather your visa documents checklist and submit your file through a trusted visa agent in Qatar. A professional team reduces errors and speeds things up.",
+  },
+  {
+    question: "Where should I apply for a Saudi visa in Qatar?",
+    answer:
+      "You have two clear paths. You can visit the embassy yourself, or you can work with a trusted Visa consultant in Qatar who understands the full Saudi visa application process. Many applicants choose expert support because document checks and online submissions must be exact. Even a small typing error can cause delays. If you prefer guidance, Sky Quest handles everything step by step, reviews your paperwork carefully, and keeps you updated until your visa moves forward smoothly.",
+  },
+  {
+    question: "How long does Saudi visa processing take?",
+    answer:
+      "Processing time depends on visa type and document accuracy. Tourist visas may move quickly with fast Saudi visa processing services. However, business or work visas can take longer due to approvals. Clean paperwork always shortens waiting time.",
+  },
+  {
+    question: "Can Qatar residents apply online?",
+    answer:
+      "Yes, in many cases you can apply for a Saudi Arabia visa online. The system works well if documents are complete. Still, many applicants choose Saudi visa services in Qatar providers to avoid technical errors. Online forms look simple until something goes wrong.",
+  },
+  {
+    question: "What documents are mandatory?",
+    answer:
+      "Every applicant needs a valid passport, photo, and supporting papers. The exact list depends on visa type. Always verify your Saudi visa requirements before submission. Missing even one item from the Saudi visa documents checklist can pause your application.",
+  },
+  {
+    question: "Is using a Saudi visa consultant really helpful?",
+    answer:
+      "Honestly, yes. A skilled Saudi visa consultant Qatar understands policy updates and hidden conditions. Instead of guessing, you get clarity. Many clients choose the visa agent in Qatar to get the visa approved fast without unnecessary stress.",
+  },
+  {
+    question: "Can I apply for a Saudi business visa from Qatar?",
+    answer:
+      "Absolutely. The Saudi business visa requires invitation letters and company documents. Accuracy matters here. Professional Saudi visa services in Qatar ensure your commercial paperwork aligns with ministry standards.",
+  },
+  {
+    question: "What about Umrah or E-Visa options?",
+    answer:
+      "Religious travel has specific eligibility rules. You must check updated entry conditions before applying. Many applicants prefer expert support when they Apply a Saudi visa from Qatar to avoid rejection. Guidance makes the path smoother.",
+  },
+  {
+    question: "Why do some visas get rejected?",
+    answer:
+      "Most rejections happen due to incorrect details or weak documentation. Sometimes travel history raises questions. Working with Professional document clearing Qatar specialists minimizes these risks. Careful review prevents unnecessary disappointment.",
+  },
+  {
+    question: "How do I choose the right visa agent?",
+    answer:
+      "Start with reputation and transparency. Read reviews and ask about success rates. A trusted Saudi visa agent in Qatar explains costs clearly and guides you step by step. When service feels organized and responsive, you\u2019re in safe hands.",
+  },
+];
+
 function renderFAQs() {
   var container = document.getElementById("faqContainer");
   if (!container) return;
 
-  container.innerHTML = faqs
-    .map(function (faq) {
-      return (
-        '<div class="faq-item">' +
-        '  <div class="faq-question">' +
-        '    <span class="faq-question-text">' +
-        faq.question +
-        "</span>" +
-        '    <i class="fas fa-chevron-down faq-icon"></i>' +
-        "  </div>" +
-        '  <div class="faq-answer-wrap" style="max-height:0">' +
-        '    <div class="faq-answer">' +
-        faq.answer +
-        "</div>" +
-        "  </div>" +
-        "</div>"
-      );
-    })
-    .join("");
-
-  initFAQToggle();
+  var accordionId = "mainFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    faqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "mainFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h3 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h3>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
 }
 
 function renderAuFAQs() {
@@ -146,7 +215,7 @@ function renderAuFAQs() {
         var id = "auFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -156,7 +225,7 @@ function renderAuFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -187,7 +256,7 @@ function renderUsFAQs() {
         var id = "usFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -197,7 +266,7 @@ function renderUsFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -228,7 +297,7 @@ function renderCaFAQs() {
         var id = "caFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -238,7 +307,7 @@ function renderCaFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -269,7 +338,7 @@ function renderUkFAQs() {
         var id = "ukFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -279,7 +348,7 @@ function renderUkFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -310,7 +379,7 @@ function renderDubaiFAQs() {
         var id = "dubaiFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -320,7 +389,7 @@ function renderDubaiFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -351,7 +420,7 @@ function renderSchengenFAQs() {
         var id = "schengenFaq" + n;
         return (
           '<div class="accordion-item">' +
-          '  <h2 class="accordion-header">' +
+          '  <h3 class="accordion-header">' +
           '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
           id +
           '" aria-expanded="false" aria-controls="' +
@@ -361,7 +430,48 @@ function renderSchengenFAQs() {
           ". " +
           faq.question +
           "</button>" +
-          "  </h2>" +
+          "  </h3>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
+function renderSaudiFAQs() {
+  var container = document.getElementById("saudiFaqContainer");
+  if (!container) return;
+  var accordionId = "saudiFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    saudiFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "saudiFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h3 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h3>" +
           '  <div id="' +
           id +
           '" class="accordion-collapse collapse" data-bs-parent="#' +
@@ -396,10 +506,10 @@ function initFAQToggle() {
         if (w) w.style.maxHeight = "0";
       });
       document.querySelectorAll(".faq-icon").forEach(function (i) {
-        i.style.transform = "rotate(0deg)";
-      });
-
-      if (!isOpen) {
+          i.style.transform = "rotate(0deg)";
+        });
+  
+        if (!isOpen) {
         item.classList.add("active");
         answerWrap.style.maxHeight = answer.scrollHeight + 24 + "px";
         if (icon) icon.style.transform = "rotate(180deg)";
@@ -414,7 +524,7 @@ function initFAQToggle() {
         var a = wrap.querySelector(".faq-answer");
         if (a) wrap.style.maxHeight = a.scrollHeight + 24 + "px";
       });
-  });
+    });
 }
 
 function initFaqs() {
@@ -425,6 +535,7 @@ function initFaqs() {
   renderUkFAQs();
   renderDubaiFAQs();
   renderSchengenFAQs();
+  renderSaudiFAQs();
 }
 
 if (document.readyState === "loading") {
