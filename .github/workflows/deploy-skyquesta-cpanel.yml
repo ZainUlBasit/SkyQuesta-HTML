@@ -28,13 +28,24 @@ jobs:
             --exclude "DEPLOY.md" \
             --exclude ".gitignore"
 
-      - name: Upload to cPanel via SFTP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Normalize connection values
+        run: |
+          CLEAN_HOST="$(echo "${{ secrets.CPANEL_HOST }}" | sed -E 's#^https?://##; s#/$##')"
+          RAW_PORT="${{ secrets.CPANEL_PORT }}"
+          DEPLOY_PORT="$RAW_PORT"
+          if [ -z "$DEPLOY_PORT" ] || [ "$DEPLOY_PORT" = "2083" ]; then
+            DEPLOY_PORT="21"
+          fi
+          echo "CPANEL_HOST_CLEAN=$CLEAN_HOST" >> "$GITHUB_ENV"
+          echo "CPANEL_DEPLOY_PORT=$DEPLOY_PORT" >> "$GITHUB_ENV"
+
+      - name: Upload to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
-          port: ${{ secrets.CPANEL_PORT || 22 }}
-          source: "deploy/skyquesta/*"
-          target: ${{ secrets.CPANEL_REMOTE_PATH }}
-          overwrite: true
+          server: ${{ env.CPANEL_HOST_CLEAN }}
+          port: ${{ env.CPANEL_DEPLOY_PORT }}
+          protocol: ftp
+          local-dir: deploy/skyquesta/
+          server-dir: ${{ secrets.CPANEL_REMOTE_PATH }}/
