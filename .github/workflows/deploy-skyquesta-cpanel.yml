@@ -36,8 +36,15 @@ jobs:
           if [ -z "$DEPLOY_PORT" ] || [ "$DEPLOY_PORT" = "2083" ]; then
             DEPLOY_PORT="21"
           fi
+          RAW_REMOTE_PATH="${{ secrets.CPANEL_REMOTE_PATH }}"
+          FTP_REMOTE_PATH="$(echo "$RAW_REMOTE_PATH" | sed -E 's#^/home/[^/]+##')"
+          if [ -z "$FTP_REMOTE_PATH" ]; then
+            FTP_REMOTE_PATH="/public_html"
+          fi
+          FTP_REMOTE_PATH="$(echo "$FTP_REMOTE_PATH" | sed -E 's#/*$##')/"
           echo "CPANEL_HOST_CLEAN=$CLEAN_HOST" >> "$GITHUB_ENV"
           echo "CPANEL_DEPLOY_PORT=$DEPLOY_PORT" >> "$GITHUB_ENV"
+          echo "CPANEL_FTP_REMOTE_PATH=$FTP_REMOTE_PATH" >> "$GITHUB_ENV"
 
       - name: Upload to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -46,6 +53,8 @@ jobs:
           password: ${{ secrets.CPANEL_PASSWORD }}
           server: ${{ env.CPANEL_HOST_CLEAN }}
           port: ${{ env.CPANEL_DEPLOY_PORT }}
-          protocol: ftp
+          protocol: ftps
+          security: loose
+          log-level: verbose
           local-dir: deploy/skyquesta/
-          server-dir: ${{ secrets.CPANEL_REMOTE_PATH }}/
+          server-dir: ${{ env.CPANEL_FTP_REMOTE_PATH }}
