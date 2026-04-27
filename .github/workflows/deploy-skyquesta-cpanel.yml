@@ -1,0 +1,40 @@
+name: Deploy Skyquesta to cPanel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare filtered deploy directory
+        run: |
+          mkdir -p deploy/skyquesta
+          rsync -av --delete ./ deploy/skyquesta/ \
+            --exclude ".git/" \
+            --exclude ".github/" \
+            --exclude ".cursor/" \
+            --exclude "node_modules/" \
+            --exclude "cgi-bin-m/.git/" \
+            --exclude "error_log" \
+            --exclude "*.md" \
+            --exclude "DEPLOY.md" \
+            --exclude ".gitignore"
+
+      - name: Upload to cPanel via SFTP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
+          port: ${{ secrets.CPANEL_PORT || 22 }}
+          source: "deploy/skyquesta/*"
+          target: ${{ secrets.CPANEL_REMOTE_PATH }}
+          overwrite: true

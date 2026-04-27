@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# Use index.html as the default document.
+DirectoryIndex index.html
+
+# Redirect explicit index.html to root.
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[\s?]|$) [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Redirect any /page.html request to /page (preserve query string).
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html(?:[\s?]|$) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+# Serve extensionless URLs from matching .html files.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]

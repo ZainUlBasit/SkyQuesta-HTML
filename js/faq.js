@@ -38,6 +38,7 @@ var faqs = [
     },
   ];
   
+  
 // Australia page – Australia immigration FAQ (Bootstrap accordion)
 var auFaqs = [
   { question: "What does an Australia Immigration Consultant in Qatar actually do?", answer: "An Australia immigration consultant guides you through the full visa process. They check your profile, prepare documents, and submit your application correctly. This reduces mistakes and improves approval chances." },

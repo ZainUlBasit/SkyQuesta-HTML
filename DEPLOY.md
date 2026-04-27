@@ -1,11 +1,15 @@
-# cPanel CI/CD Setup
+# Skyquesta cPanel CI/CD Setup
 
-This project uses **GitHub Actions** to deploy to cPanel when you push to `main` or `master`. Deployment is done over **SFTP**.
+This project uses **GitHub Actions** to deploy only the `skyquesta/` app to cPanel when you push to `main` or `master`. Deployment is done over **SFTP**.
+
+Workflow path:
+
+- `.github/workflows/deploy-skyquesta-cpanel.yml`
 
 ## 1. GitHub repo
 
 - Create a repo on GitHub and push this project.
-- Ensure the branch you push is `main` or `master` (or change `branches` in `.github/workflows/deploy-cpanel.yml`).
+- Ensure the branch you push is `main` or `master` (or change `branches` in `.github/workflows/deploy-skyquesta-cpanel.yml`).
 
 ## 2. cPanel – SFTP details
 
@@ -27,14 +31,15 @@ Add these (names must match exactly):
 | `CPANEL_HOST`         | `ftp.yourdomain.com`       | SFTP host          |
 | `CPANEL_USERNAME`     | `cpaneluser`               | SFTP username      |
 | `CPANEL_PASSWORD`     | `your-sftp-password`       | SFTP password      |
+| `CPANEL_PORT`         | `22`                       | SFTP port (optional) |
 | `CPANEL_REMOTE_PATH`  | `/home/cpaneluser/public_html` | Remote deploy path |
 
 After saving, every push to `main` (or `master`) will run the workflow and deploy via SFTP.
 
 ## 4. Optional: deploy only on tag or manual run
 
-- **Manual run:** In GitHub, go to **Actions → Deploy to cPanel → Run workflow**.
-- **Deploy on tag only:** In `.github/workflows/deploy-cpanel.yml`, change `on` to:
+- **Manual run:** In GitHub, go to **Actions → Deploy Skyquesta to cPanel → Run workflow**.
+- **Deploy on tag only:** In `.github/workflows/deploy-skyquesta-cpanel.yml`, change `on` to:
   ```yaml
   on:
     push:
@@ -44,15 +49,26 @@ After saving, every push to `main` (or `master`) will run the workflow and deplo
 
 ## 5. Excluded from deploy
 
-These are not uploaded (see `exclude` in the workflow):
+Only `skyquesta/` files are uploaded.
 
-- `.git`, `.github`, `.cursor`, `node_modules`, `.env`, `*.md`, `DEPLOY.md`, `.gitignore`
+Before upload, the workflow creates a filtered `deploy/skyquesta/` directory and excludes:
 
-To change what’s excluded, edit the `exclude:` block in `.github/workflows/deploy-cpanel.yml`.
+- `.git/`
+- `.github/`
+- `.cursor/`
+- `node_modules/`
+- `cgi-bin-m/.git/`
+- `error_log`
+- `*.md`
+- `DEPLOY.md`
+- `.gitignore`
+
+To change these exclusions, edit the `rsync --exclude` list in `.github/workflows/deploy-skyquesta-cpanel.yml`.
 
 ## 6. SFTP port
 
-If your host uses a port other than 22, edit `.github/workflows/deploy-cpanel.yml` and set:
+If your host uses a port other than 22, add `CPANEL_PORT` in GitHub Secrets.  
+Or edit `.github/workflows/deploy-skyquesta-cpanel.yml` and set:
 
 ```yaml
 port: 2222   # or whatever your host uses

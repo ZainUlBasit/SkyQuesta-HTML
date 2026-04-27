@@ -1,4 +1,4 @@
-// navbar.js – injects topbar + navbar into #navbarSection when DOM is ready
+// navbar.js – premium topbar + navbar injected into #navbarSection
 
 var navbarData = {
   topbar: {
@@ -11,9 +11,10 @@ var navbarData = {
     instagram: "#",
   },
   nav: {
-    logoAlt: "Logo",
+    logoAlt: "Sky Quest",
     homeLink: "index.html",
     aboutLink: "about.html",
+    blogLink: "blog.html",
     contactLink: "contact.html",
     servicePages: [
       "best-uk-immigration-consultant-in-qatar.html",
@@ -34,75 +35,71 @@ var navbarData = {
 function getNavbarHTML() {
   return (
     "<!-- Topbar Start -->" +
-    '<div class="container-fluid bg-primary px-5 d-none d-lg-block">' +
-    '  <div class="row gx-0 align-items-center">' +
-    '    <div class="col-lg-5 text-center text-lg-start mb-lg-0">' +
-    '      <div class="d-flex">' +
+    '<div class="sq-topbar-wrap d-none d-lg-block">' +
+    '  <div class="container px-4 px-lg-5">' +
+    '    <div class="sq-topbar d-flex flex-wrap align-items-center justify-content-between">' +
+    '      <div class="sq-topbar-left d-flex align-items-center gap-3">' +
     '        <a href="mailto:' +
     navbarData.topbar.email +
-    '" class="text-white me-4" style="color:#fff !important"><i class="fas fa-envelope me-2 text-secondary"></i>' +
+    '" class="sq-topbar-link"><i class="fas fa-envelope"></i><span>' +
     navbarData.topbar.email +
-    "</a>" +
+    "</span></a>" +
     '        <a href="tel:' +
     navbarData.topbar.phone +
-    '" class="text-white me-0" style="color:#fff !important"><i class="fas fa-phone-alt me-2 text-secondary"></i>' +
+    '" class="sq-topbar-link"><i class="fas fa-phone-alt"></i><span>' +
     navbarData.topbar.phone +
-    "</a>" +
+    "</span></a>" +
     "      </div>" +
-    "    </div>" +
-    '    <div class="col-lg-3 row-cols-1 text-center mb-2 mb-lg-0">' +
-    '      <div class="d-inline-flex align-items-center" style="height: 45px">' +
-    '        <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="' +
+    '      <div class="sq-topbar-right d-flex align-items-center gap-3">' +
+    '        <div class="sq-socials d-flex align-items-center">' +
+    '          <a class="sq-social-btn" href="' +
     navbarData.topbar.twitter +
-    '"><i class="fab fa-twitter fw-normal text-secondary"></i></a>' +
-    '        <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="' +
+    '" aria-label="Twitter"><i class="fab fa-twitter"></i></a>' +
+    '          <a class="sq-social-btn" href="' +
     navbarData.topbar.facebook +
-    '"><i class="fab fa-facebook-f fw-normal text-secondary"></i></a>' +
-    '        <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="' +
+    '" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>' +
+    '          <a class="sq-social-btn" href="' +
     navbarData.topbar.linkedin +
-    '"><i class="fab fa-linkedin-in fw-normal text-secondary"></i></a>' +
-    '        <a class="btn btn-sm btn-outline-light btn-square rounded-circle me-2" href="' +
+    '" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>' +
+    '          <a class="sq-social-btn" href="' +
     navbarData.topbar.instagram +
-    '"><i class="fab fa-instagram fw-normal text-secondary"></i></a>' +
-    "      </div>" +
-    "    </div>" +
-    '    <div class="col-lg-4 text-center text-lg-end">' +
-    '      <div class="d-inline-flex align-items-center" style="height: 45px">' +
-    '        <a href="#" class="text-muted me-2" style="color:#fff !important">Help</a> <small class="text-secondary"> / </small>' +
-    '        <a href="#" class="text-muted mx-2" style="color:#fff !important">Support</a> <small class="text-secondary"> / </small>' +
+    '" aria-label="Instagram"><i class="fab fa-instagram"></i></a>' +
+    "        </div>" +
     '        <a href="' +
     navbarData.topbar.contactLink +
-    '" class="text-muted ms-2" style="color:#fff !important">Contact</a>' +
+    '" class="sq-topbar-cta">Quick Contact</a>' +
     "      </div>" +
     "    </div>" +
     "  </div>" +
     "</div>" +
     "<!-- Topbar End -->" +
-    "" +
     "<!-- Navbar Start -->" +
-    '<div class="container-fluid nav-bar p-0">' +
-    '  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">' +
+    '<div class="container-fluid nav-bar p-0 sq-nav-wrap">' +
+    '  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0 sq-navbar">' +
     '    <a href="' +
     navbarData.nav.homeLink +
-    '" class="navbar-brand p-0"><img src="img/logo.png" width="100%" alt="' +
+    '" class="navbar-brand p-0 sq-brand"><img src="img/logo.png" width="100%" alt="' +
     navbarData.nav.logoAlt +
     '" /></a>' +
-    '    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="fa fa-bars"></span></button>' +
+    '    <button class="navbar-toggler sq-nav-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>' +
     '    <div class="collapse navbar-collapse" id="navbarCollapse">' +
-    '      <div class="navbar-nav ms-auto py-0">' +
+    '      <div class="navbar-nav ms-auto py-0 align-items-lg-center">' +
     '        <a href="' +
     navbarData.nav.homeLink +
-    '" class="nav-item nav-link" data-nav="home">Home</a>' +
+    '" class="nav-item nav-link sq-nav-link" data-nav="home">Home</a>' +
     '        <a href="' +
     navbarData.nav.aboutLink +
-    '" class="nav-item nav-link" data-nav="about">About</a>' +
+    '" class="nav-item nav-link sq-nav-link" data-nav="about">About</a>' +
+    '        <a href="' +
+    navbarData.nav.blogLink +
+    '" class="nav-item nav-link sq-nav-link" data-nav="blog">Blog</a>' +
     '        <div class="nav-item dropdown">' +
-    '          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-nav="services"><span class="dropdown-toggle">Services</span></a>' +
-    '          <div class="dropdown-menu m-0" id="serviceDropdown"></div>' +
+    '          <a href="#" class="nav-link dropdown-toggle sq-nav-link" data-bs-toggle="dropdown" data-nav="services"><span class="dropdown-toggle">Services</span></a>' +
+    '          <div class="dropdown-menu m-0 sq-dropdown-menu" id="serviceDropdown"></div>' +
     "        </div>" +
     '        <a href="' +
     navbarData.nav.contactLink +
-    '" class="nav-item nav-link" data-nav="contact">Contact</a>' +
+    '" class="sq-nav-contact-btn">Contact Us</a>' +
     "      </div>" +
     "    </div>" +
     "  </nav>" +
@@ -111,26 +108,40 @@ function getNavbarHTML() {
   );
 }
 
+function normalizePageName(pathname) {
+  var page = pathname.split("/").pop() || "";
+  if (page === "" || pathname === "/" || pathname.endsWith("/")) return "index";
+  return page.replace(/\.html$/i, "").toLowerCase();
+}
+
+function isServicePage(current) {
+  if (!navbarData.nav.servicePages || !navbarData.nav.servicePages.length) return false;
+  var normalized = current.replace(/\.html$/i, "");
+  for (var i = 0; i < navbarData.nav.servicePages.length; i++) {
+    var service = navbarData.nav.servicePages[i].replace(/\.html$/i, "");
+    if (service === normalized) return true;
+  }
+  return false;
+}
+
 function setActiveNav() {
   var path =
     typeof document !== "undefined" && document.location && document.location.pathname
       ? document.location.pathname
       : "";
-  var page = path.split("/").pop() || "";
-  if (page === "" || path === "/" || path.endsWith("/")) page = "index.html";
-
+  var current = normalizePageName(path);
   var links = document.querySelectorAll(".navbar-nav .nav-link[data-nav]");
-  var isServicePage =
-    navbarData.nav.servicePages && navbarData.nav.servicePages.indexOf(page) !== -1;
 
   for (var i = 0; i < links.length; i++) {
     var a = links[i];
     var nav = a.getAttribute("data-nav");
     a.classList.remove("active");
-    if (nav === "home" && (page === "index.html" || page === "")) a.classList.add("active");
-    if (nav === "about" && page.indexOf("about") !== -1) a.classList.add("active");
-    if (nav === "contact" && page.indexOf("contact") !== -1) a.classList.add("active");
-    if (nav === "services" && isServicePage) a.classList.add("active");
+
+    if (nav === "home" && current === "index") a.classList.add("active");
+    if (nav === "about" && current.indexOf("about") !== -1) a.classList.add("active");
+    if (nav === "contact" && current.indexOf("contact") !== -1) a.classList.add("active");
+    if (nav === "services" && isServicePage(current)) a.classList.add("active");
+    if (nav === "blog" && (current === "blog" || current === "blog-detail")) a.classList.add("active");
   }
 }
 
