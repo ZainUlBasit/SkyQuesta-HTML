@@ -20,6 +20,12 @@
     { name: "Global Visa Assistance", link: "global-visa-assistance-in-qatar.html" },
   ];
 
+  function getBasePrefix() {
+    if (typeof document === "undefined" || !document.location) return "";
+    var path = (document.location.pathname || "").toLowerCase();
+    return path.indexOf("/blog/") !== -1 ? "../" : "";
+  }
+
   /**
    * Renders service links into the dropdown container.
    * No-op if container is missing (e.g. page without navbar).
@@ -27,10 +33,18 @@
   function renderServicesDropdown() {
     var container = document.getElementById(DROPDOWN_ID);
     if (!container) return;
+    var basePrefix = getBasePrefix();
 
     container.innerHTML = servicesDropdown
       .map(function (item) {
-        return '<a href="' + item.link + '" class="dropdown-item">' + item.name + "</a>";
+        return (
+          '<a href="' +
+          basePrefix +
+          item.link +
+          '" class="dropdown-item">' +
+          item.name +
+          "</a>"
+        );
       })
       .join("");
   }

@@ -1,8 +1,7 @@
 (function () {
   "use strict";
 
-  var BLOG_API_BASE =
-    "https://blog-app-backend-two-eta.vercel.app/api/blogs";
+  var BLOG_DATA_URL = "data/blogs.json";
 
   function escapeHtml(str) {
     if (str == null || str === "") return "";
@@ -35,13 +34,6 @@
       .join("");
   }
 
-  function buildQuery(params) {
-    var parts = ["publicOnly=true"];
-    if (params.page) parts.push("page=" + encodeURIComponent(String(params.page)));
-    if (params.limit) parts.push("limit=" + encodeURIComponent(String(params.limit)));
-    return parts.join("&");
-  }
-
   function renderError(container, message) {
     if (!container) return;
     container.innerHTML =
@@ -57,9 +49,11 @@
     var excerpt = b.excerpt || b.shortDescription || "";
     var authorName = b.author && b.author.name ? b.author.name : "";
     var identifier = b.slug || b._id || "";
-    var href = b.slug
-      ? "blog-detail.html?slug=" + encodeURIComponent(identifier)
-      : "blog-detail.html?id=" + encodeURIComponent(identifier);
+    var href =
+      b.url ||
+      (b.slug
+        ? "blog-detail.html?slug=" + encodeURIComponent(identifier)
+        : "blog-detail.html?id=" + encodeURIComponent(identifier));
     var excerptShort =
       excerpt.length > 160 ? excerpt.slice(0, 157) + "…" : excerpt;
     var category = b.category || "General";
@@ -323,6 +317,50 @@
     }
   }
 
+  function toItemsArray(body) {
+    if (!body) return [];
+    if (Array.isArray(body)) return body;
+    if (Array.isArray(body.items)) return body.items;
+    if (body.data && Array.isArray(body.data.items)) return body.data.items;
+    if (body.data && Array.isArray(body.data)) return body.data;
+    return [];
+  }
+
+  function normalizeItem(item) {
+    if (!item || typeof item !== "object") return null;
+    return {
+      _id: item._id || "",
+      slug: item.slug || "",
+      url: item.url || "",
+      title: item.title || "",
+      excerpt: item.excerpt || item.shortDescription || "",
+      shortDescription: item.shortDescription || "",
+      coverImage: item.coverImage || item.featuredImage || "",
+      featuredImage: item.featuredImage || "",
+      category: item.category || "General",
+      tags: Array.isArray(item.tags) ? item.tags : [],
+      readingTime: Number(item.readingTime) > 0 ? Number(item.readingTime) : 1,
+      publishedAt: item.publishedAt || "",
+      isFeatured: Boolean(item.isFeatured),
+      views: typeof item.views === "number" ? item.views : null,
+      author: item.author && item.author.name ? item.author : { name: "Sky Quest Team" },
+    };
+  }
+
+  function paginate(items, page, limit) {
+    var total = items.length;
+    var totalPages = Math.max(1, Math.ceil(total / limit));
+    var safePage = Math.min(Math.max(page, 1), totalPages);
+    var start = (safePage - 1) * limit;
+    var end = start + limit;
+    return {
+      items: items.slice(start, end),
+      total: total,
+      page: safePage,
+      totalPages: totalPages,
+    };
+  }
+
   function fetchBlogs(state, els) {
     var listEl = els.listEl;
     var errEl = els.errEl;
@@ -335,24 +373,19 @@
     showSkeleton(listEl);
     if (pagEl) pagEl.innerHTML = "";
 
-    var url = BLOG_API_BASE + "?" + buildQuery(state);
-    fetch(url, { credentials: "omit" })
+    fetch(BLOG_DATA_URL, { credentials: "omit" })
       .then(function (res) {
-        return res.json().then(function (body) {
-          return { ok: res.ok, body: body };
-        });
+        if (!res.ok) throw new Error("Unable to load local blog data.");
+        return res.json();
       })
-      .then(function (result) {
-        var body = result.body;
-        if (!result.ok || !body || !body.success || !body.data) {
-          var msg =
-            (body && body.message) ||
-            (result.ok ? "Invalid response from server." : "Unable to load blogs.");
-          renderError(errEl, msg);
-          if (listEl) listEl.innerHTML = "";
-          return;
-        }
-        var data = body.data;
+      .then(function (body) {
+        var normalized = toItemsArray(body)
+          .map(normalizeItem)
+          .filter(function (item) {
+            return item && item.title;
+          });
+        var data = paginate(normalized, state.page, state.limit);
+        state.page = data.page;
         updateStats(data);
         renderGrid(listEl, data.items || []);
 
@@ -363,7 +396,7 @@
         });
       })
       .catch(function () {
-        renderError(errEl, "Network error. Please try again.");
+        renderError(errEl, "Blog data file load nahi hui. `data/blogs.json` check karein.");
         if (listEl) listEl.innerHTML = "";
       });
   }

@@ -32,7 +32,21 @@ var navbarData = {
   },
 };
 
+function getBasePrefix() {
+  if (typeof document === "undefined" || !document.location) return "";
+  var path = (document.location.pathname || "").toLowerCase();
+  return path.indexOf("/blog/") !== -1 ? "../" : "";
+}
+
 function getNavbarHTML() {
+  var basePrefix = getBasePrefix();
+  var homeLink = basePrefix + navbarData.nav.homeLink;
+  var aboutLink = basePrefix + navbarData.nav.aboutLink;
+  var blogLink = basePrefix + navbarData.nav.blogLink;
+  var contactLink = basePrefix + navbarData.nav.contactLink;
+  var topContactLink = basePrefix + navbarData.topbar.contactLink;
+  var logoSrc = basePrefix + "img/logo.png";
+
   return (
     "<!-- Topbar Start -->" +
     '<div class="sq-topbar-wrap d-none d-lg-block">' +
@@ -66,7 +80,7 @@ function getNavbarHTML() {
     '" aria-label="Instagram"><i class="fab fa-instagram"></i></a>' +
     "        </div>" +
     '        <a href="' +
-    navbarData.topbar.contactLink +
+    topContactLink +
     '" class="sq-topbar-cta">Quick Contact</a>' +
     "      </div>" +
     "    </div>" +
@@ -77,28 +91,30 @@ function getNavbarHTML() {
     '<div class="container-fluid nav-bar p-0 sq-nav-wrap">' +
     '  <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0 sq-navbar">' +
     '    <a href="' +
-    navbarData.nav.homeLink +
-    '" class="navbar-brand p-0 sq-brand"><img src="img/logo.png" width="100%" alt="' +
+    homeLink +
+    '" class="navbar-brand p-0 sq-brand"><img src="' +
+    logoSrc +
+    '" width="100%" alt="' +
     navbarData.nav.logoAlt +
     '" /></a>' +
     '    <button class="navbar-toggler sq-nav-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>' +
     '    <div class="collapse navbar-collapse" id="navbarCollapse">' +
     '      <div class="navbar-nav ms-auto py-0 align-items-lg-center">' +
     '        <a href="' +
-    navbarData.nav.homeLink +
+    homeLink +
     '" class="nav-item nav-link sq-nav-link" data-nav="home">Home</a>' +
     '        <a href="' +
-    navbarData.nav.aboutLink +
+    aboutLink +
     '" class="nav-item nav-link sq-nav-link" data-nav="about">About</a>' +
     '        <a href="' +
-    navbarData.nav.blogLink +
+    blogLink +
     '" class="nav-item nav-link sq-nav-link" data-nav="blog">Blog</a>' +
     '        <div class="nav-item dropdown">' +
     '          <a href="#" class="nav-link dropdown-toggle sq-nav-link" data-bs-toggle="dropdown" data-nav="services"><span class="dropdown-toggle">Services</span></a>' +
     '          <div class="dropdown-menu m-0 sq-dropdown-menu" id="serviceDropdown"></div>' +
     "        </div>" +
     '        <a href="' +
-    navbarData.nav.contactLink +
+    contactLink +
     '" class="sq-nav-contact-btn">Contact Us</a>' +
     "      </div>" +
     "    </div>" +
@@ -129,6 +145,7 @@ function setActiveNav() {
     typeof document !== "undefined" && document.location && document.location.pathname
       ? document.location.pathname
       : "";
+  var isBlogDirectoryPage = /\/blog\/[^/]+\.html?$/i.test(path);
   var current = normalizePageName(path);
   var links = document.querySelectorAll(".navbar-nav .nav-link[data-nav]");
 
@@ -141,7 +158,8 @@ function setActiveNav() {
     if (nav === "about" && current.indexOf("about") !== -1) a.classList.add("active");
     if (nav === "contact" && current.indexOf("contact") !== -1) a.classList.add("active");
     if (nav === "services" && isServicePage(current)) a.classList.add("active");
-    if (nav === "blog" && (current === "blog" || current === "blog-detail")) a.classList.add("active");
+    if (nav === "blog" && (current === "blog" || current === "blog-detail" || isBlogDirectoryPage))
+      a.classList.add("active");
   }
 }
 
