@@ -14,7 +14,7 @@ var navbarData = {
     logoAlt: "Sky Quest",
     homeLink: "index.html",
     aboutLink: "about.html",
-    blogLink: "blog.html",
+    blogLink: "blogs.html",
     contactLink: "contact.html",
     servicePages: [
       "best-uk-immigration-consultant-in-qatar.html",
@@ -158,7 +158,7 @@ function setActiveNav() {
     if (nav === "about" && current.indexOf("about") !== -1) a.classList.add("active");
     if (nav === "contact" && current.indexOf("contact") !== -1) a.classList.add("active");
     if (nav === "services" && isServicePage(current)) a.classList.add("active");
-    if (nav === "blog" && (current === "blog" || current === "blog-detail" || isBlogDirectoryPage))
+    if (nav === "blog" && (current === "blog" || current === "blogs" || current === "blog-detail" || isBlogDirectoryPage))
       a.classList.add("active");
   }
 }
