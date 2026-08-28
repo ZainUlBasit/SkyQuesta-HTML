@@ -18,6 +18,7 @@
     { name: "UK Immigration", link: "best-uk-immigration-consultant-in-qatar.html" },
     { name: "Saudi Visa", link: "best-saudi-visa-agent-in-qatar.html" },
     { name: "Global Visa Assistance", link: "global-visa-assistance-in-qatar.html" },
+    { name: "Visa Eligibility Assessment", link: "visa-eligibility-assessment.html" },
   ];
 
   function getBasePrefix() {

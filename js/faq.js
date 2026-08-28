@@ -159,6 +159,60 @@ var saudiFaqs = [
   },
 ];
 
+// Visa Eligibility Assessment page – eligibility FAQ (Bootstrap accordion)
+var eligibilityFaqs = [
+  {
+    question: "Is the visa eligibility assessment really free?",
+    answer:
+      "Yes. Sky Quest offers a free initial visa and immigration eligibility assessment to help you understand possible pathways before starting a formal application. Separate application, government, embassy, medical, or third-party fees may apply later.",
+  },
+  {
+    question: "Is a free visa assessment the same as a free visa?",
+    answer:
+      "No. The assessment is free, not the visa itself. Visa and immigration applications may involve government fees, biometrics, medical tests, document costs, or other charges depending on the destination and program.",
+  },
+  {
+    question: "How can I check my immigration eligibility from Qatar?",
+    answer:
+      "You can submit your profile to Sky Quest for an initial assessment. We review factors such as your age, education, occupation, work experience, language ability, immigration history, and preferred destination.",
+  },
+  {
+    question: "What information do you need to check my eligibility?",
+    answer:
+      "We may ask for your nationality, Qatar residency status, age, education, occupation, work experience, language ability, marital status, preferred destination, immigration goal, and previous visa history.",
+  },
+  {
+    question: "Can you check my Canada PR eligibility from Qatar?",
+    answer:
+      "Yes. We can review your profile against potentially relevant Canadian immigration pathways, including Express Entry and Provincial Nominee Programs, where applicable.",
+  },
+  {
+    question: "What is checked for Canada Express Entry eligibility?",
+    answer:
+      "The assessment may consider factors such as your age, education, skilled work experience, language proficiency, occupation, and other program-specific requirements.",
+  },
+  {
+    question: "Can you assess my CRS score?",
+    answer:
+      "Yes. Where relevant, we can review the information that contributes to your Comprehensive Ranking System (CRS) score and explain how your profile may rank within Express Entry.",
+  },
+  {
+    question: "Can you assess Australia skilled migration eligibility?",
+    answer:
+      "Yes. We can review factors such as your age, occupation, qualifications, English ability, and skilled work experience to identify potentially relevant Australian skilled migration pathways.",
+  },
+  {
+    question: "Can I get an assessment after a previous visa refusal?",
+    answer:
+      "Yes. A previous refusal does not automatically prevent another application. We can review the refusal history and identify issues that may need further attention before you proceed.",
+  },
+  {
+    question: "Does passing an eligibility assessment guarantee visa approval?",
+    answer:
+      "No. An eligibility assessment provides an initial indication of possible pathways. The final decision is made by the relevant immigration authority, embassy, consulate, or government department after reviewing the complete application.",
+  },
+];
+
 function renderFAQs() {
   var container = document.getElementById("faqContainer");
   if (!container) return;
@@ -489,6 +543,47 @@ function renderSaudiFAQs() {
     "</div>";
 }
 
+function renderEligibilityFAQs() {
+  var container = document.getElementById("eligibilityFaqContainer");
+  if (!container) return;
+  var accordionId = "eligibilityFaqAccordion";
+  container.innerHTML =
+    '<div class="accordion accordion-flush" id="' +
+    accordionId +
+    '">' +
+    eligibilityFaqs
+      .map(function (faq, i) {
+        var n = i + 1;
+        var id = "eligibilityFaq" + n;
+        return (
+          '<div class="accordion-item">' +
+          '  <h3 class="accordion-header">' +
+          '    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' +
+          id +
+          '" aria-expanded="false" aria-controls="' +
+          id +
+          '">' +
+          n +
+          ". " +
+          faq.question +
+          "</button>" +
+          "  </h3>" +
+          '  <div id="' +
+          id +
+          '" class="accordion-collapse collapse" data-bs-parent="#' +
+          accordionId +
+          '">' +
+          '    <div class="accordion-body">' +
+          faq.answer +
+          "</div>" +
+          "  </div>" +
+          "</div>"
+        );
+      })
+      .join("") +
+    "</div>";
+}
+
 function initFAQToggle() {
   var items = document.querySelectorAll(".faq-item");
   items.forEach(function (item) {
@@ -537,6 +632,7 @@ function initFaqs() {
   renderDubaiFAQs();
   renderSchengenFAQs();
   renderSaudiFAQs();
+  renderEligibilityFAQs();
 }
 
 if (document.readyState === "loading") {

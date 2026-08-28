@@ -28,6 +28,7 @@ var navbarData = {
       "travelarrangements.html",
       "documentassistance.html",
       "globalvisa.html",
+      "visa-eligibility-assessment.html",
     ],
   },
 };

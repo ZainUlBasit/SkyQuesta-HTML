@@ -31,6 +31,14 @@ const services = [
     link: "visitorassistance.html",
     delay: "0.1s",
   },
+  {
+    title: "Free Visa & Immigration Eligibility Assessment",
+    image: "img/service-1.jpg",
+    description:
+      "Sky Quest offers a free initial visa and immigration eligibility assessment for Qatar residents. We review key factors such as your age, education, work experience, occupation, language ability, immigration history, and preferred destination.",
+    link: "visa-eligibility-assessment.html",
+    delay: "0.1s",
+  },
 
 //   {
 //     title: "Visitor Assistance & Support Services",
