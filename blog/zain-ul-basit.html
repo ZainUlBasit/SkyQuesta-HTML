@@ -28,90 +28,11 @@
     <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/blog.css" rel="stylesheet" />
 
-    <style>
-      .post-hero {
-        background: linear-gradient(120deg, #0e1c46 0%, #1f3f9a 50%, #3554d1 100%);
-      }
-      .post-hero-dot {
-        width: 0.62rem;
-        height: 0.62rem;
-        border-radius: 50%;
-        display: inline-block;
-        background: #fbbf24;
-      }
-      .post-meta-pill {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.42rem 0.75rem;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        background: rgba(255, 255, 255, 0.08);
-        color: rgba(255, 255, 255, 0.88);
-        font-size: 0.78rem;
-        font-weight: 600;
-      }
-      .post-shell {
-        margin-top: -3.5rem;
-      }
-      .post-card {
-        border-radius: 1.25rem;
-        border: 0;
-        box-shadow: 0 24px 60px rgba(9, 30, 66, 0.1);
-      }
-      .post-cover {
-        width: 100%;
-        border-radius: 0.9rem;
-        object-fit: cover;
-        max-height: 440px;
-      }
-      .post-category-chip {
-        background: #eff6ff;
-        color: #1e40af;
-        border: 1px solid #dbeafe;
-        font-size: 0.76rem;
-        font-weight: 700;
-      }
-      .post-content h2 {
-        color: #0f172a;
-        margin-top: 1.5rem;
-        margin-bottom: 0.75rem;
-        font-size: 1.35rem;
-        font-weight: 700;
-      }
-      .post-content p,
-      .post-content li {
-        color: #475569;
-        line-height: 1.8;
-      }
-      .post-content ul {
-        padding-left: 1.1rem;
-      }
-      .post-footer-panel {
-        border: 1px solid #e2e8f0;
-        border-radius: 0.9rem;
-        background: #f8fafc;
-      }
-      .related-link {
-        color: #1d4ed8;
-        font-weight: 600;
-        text-decoration: none;
-      }
-      .related-link:hover {
-        color: #1e3a8a;
-      }
-      .blog-page-cta {
-        background: linear-gradient(120deg, #182955 0%, #274aa8 100%);
-      }
-      @media (max-width: 767.98px) {
-        .post-shell {
-          margin-top: -2.4rem;
-        }
-      }
-    </style>
   </head>
 
-  <body>
+  <body class="blog-post-page">
     <div id="navbarSection"></div>
 
     <header class="post-hero position-relative overflow-hidden py-5">
@@ -144,9 +65,9 @@
             <article class="card post-card">
               <div class="card-body p-4 p-lg-5">
                 <img
-                  src="../img/carousel-1.jpg"
+                  src="../img/blog-canada-visit-checklist-qatar.png"
                   alt="Web development in 2026"
-                  class="post-cover mb-4"
+                  class="post-cover post-inline-banner mb-4"
                   loading="lazy"
                 />
 
@@ -168,7 +89,10 @@
                     <li>Predictive coding that reduces repetitive manual effort</li>
                   </ul>
 
-                  <h2>Modern Frameworks and Performance</h2>
+                  <figure class="post-mid-banner" aria-hidden="false">
+  <img src="../img/blog-canada-visit-checklist-qatar.png" alt="Canada visit visa document checklist for applicants in Qatar" loading="lazy" />
+</figure>
+<h2>Modern Frameworks and Performance</h2>
                   <p>
                     React, Next.js, and server-driven rendering patterns continue to improve speed and scalability. Developers can now build SEO-friendly, high-performance apps with cleaner architecture from day one.
                   </p>
